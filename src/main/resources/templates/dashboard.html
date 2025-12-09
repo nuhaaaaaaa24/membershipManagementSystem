@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Management System</title>
+    <style>
+        *{
+            font-family: Serif;
+        }
+        body {
+            background-color: #41b3a3;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            margin-left: 3vw;
+            margin-top: 3vw;
+        }
+        form {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        input, select, button {
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            width: 200px;
+        }
+        .changes {
+            text-decoration: none;
+            color: #388087;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: none;
+            color: #000000;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: none;
+        }
+
+        th {
+            background-color: #c38d9e;
+            color: #ffffff;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .addBtn {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 2vw;
+            width: 200px;
+            background-color: #e27d60;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        select {
+            padding: 8px;
+        }
+        .searchBtn, .filterBtn{
+            padding: 10px 15px;
+            background-color: #e27d60;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            width: 100px;
+            height: 2.5vw;
+        }
+
+        .countBtn {
+            padding: 8px 13px;
+            margin-top: 1vw;
+            background-color: #e27d60;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            width: 230px;
+            height: 39px;
+        }
+        .redirect{
+            display: flex;
+            justify-content: center;
+        }
+        .container2 {
+            display: flex;
+            justify-content: space-evenly; /* Adjust as needed */
+            align-items: center; /* Adjust as needed */
+        }
+
+    </style>
+</head>
+<body>
+<div class="container" align="center">
+    <h1>Member Dashboard</h1>
+    <div class="container2">
+        <div class="searchBar">
+            <form action="/search" method="get" class="searchBar">
+
+                <input type="text" placeholder="Search" id="searchMemberID" class="searchMemberID" name="memberID" required>
+
+                <button type="submit" class="searchBtn">SEARCH ID</button>
+            </form>
+        </div>
+        <div class="filterBar">
+            <form action="#" th:action="@{/filter}" method="get">
+
+                <select id="filterCategory"  name="category">
+                    <option value="" disabled selected hidden="">filter</option>
+                    <option value="all">All Members</option>
+                    <option value="Active">Active Members</option>
+                    <option value="Inactive">Inactive Members</option>
+                    <option value="Expired">Expired Members</option>
+                    <option value="Basic">Basic Members</option>
+                    <option value="Premium">Premium Members</option>
+                </select>
+
+                <button type="submit" class="filterBtn">SUBMIT</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="redirect">
+        <a class="addBtn" th:href="@{/add}">Add New Members</a>
+    </div>
+    <div class="count">
+        <form action="/count" method="get">
+            <button type="submit" class="countBtn">SHOW COUNT</button>
+        </form>
+        <p>Total Members: <span th:text="${totalCount}"></span></p>
+        <p>Active Members: <span th:text="${activeCount}"></span></p>
+        <p>Inactive Members: <span th:text="${inactiveCount}"></span></p>
+        <p>Expired Members: <span th:text="${expiredCount}"></span></p>
+    </div>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Member ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact Number</th>
+            <th>Email Address</th>
+            <th>Membership Type</th>
+            <th>Joining Date</th>
+            <th>Expiry Date</th>
+            <th>Membership Status</th>
+            <th>Edit or Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="member: ${members}">
+            <td th:text="${member.memberID}"></td>
+            <td th:text="${member.firstName}"></td>
+            <td th:text="${member.lastName}"></td>
+            <td th:text="${member.contactNumber}"></td>
+            <td th:text="${member.emailAddress}"></td>
+            <td th:text="${member.membershipType}"></td>
+            <td th:text="${member.joiningDate}"></td>
+            <td th:text="${member.expiryDate}"></td>
+            <td th:text="${member.membershipStatus}"></td>
+            <td>
+                <a class="changes" th:href="@{/edit/{id}(id=${member.memberID})}">Edit</a>
+                &nbsp;
+                <a class="changes" th:href="@{/delete/{id}(id=${member.memberID})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

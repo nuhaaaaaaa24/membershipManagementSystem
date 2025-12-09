@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Management System</title>
+    <style>
+        body {
+            font-family: Serif;
+            background-color: #41b3a3;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 400px;
+            margin-left: 35vw;
+            margin-top: 8vw;
+        }
+        h1 {
+            color: #000000;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            background: white;
+            border: 1px solid #363636;
+            padding: 15px 20px;
+            border-radius: 23px;
+            margin-top: 15px;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            flex: 0 0 48%;
+        }
+        button{
+            display: block;
+            width: 100%;
+            font-weight: bold;
+            background-color: #e27d60;
+            color: white;
+            padding-block: 15px;
+            border-radius: 20px;
+            border: none;
+            margin-top: 3vw;
+        }
+        button:hover{
+            background-color: #e8a87c;
+        }
+        .error{
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <h1>LOGIN</h1>
+    <p align="center">Please enter your username and password!</p>
+    <form th:action="@{/authenticate}" method="post">
+        <input class="username" placeholder="Username" type="text" id="username" name="username" required><br>
+        <input class="password" placeholder="Password" type="password" id="password" name="password" required><br>
+        <div th:if="${error}">
+            <p class="error" th:text="${error}"></p>
+        </div>
+        <button type="submit" class="loginBtn">LOGIN</button>
+    </form>
+</div>
+</body>
+
+</html>

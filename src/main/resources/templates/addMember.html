@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Membership Management System</title>
+    <style>
+        *{
+            font-family: Serif;
+        }
+        body {
+            background-color: #41b3a3;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 800px;
+            width: 100%;
+            margin-left: 20vw;
+            margin-top: 3vw;
+        }
+
+        h1 {
+            color: #000000;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        select::after {
+            content: '\25BC';
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        form td {
+            flex: 0 0 48%;
+        }
+        button{
+            background-color: #e27d60;
+            color: #ffffff;
+            border-radius: 23px;
+            border: none;
+            width: 15vw;
+            height: 3vw;
+        }
+        button:hover{
+            background-color: #e8a87c;
+        }
+        .btnSave{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Add New Member</h1>
+    <form action="/add" th:action="@{/add}" th:object="${member}" method="post">
+        <table>
+
+            <tr>
+                <td>Member ID</td>
+                <td><input type="text" placeholder="Member ID" th:field="*{memberID}" /></td>
+                <td>Membership Type</td>
+                <td>
+                    <select th:field="*{membershipType}">
+                        <option value="PREMIUM" th:selected="${member.membershipType == 'PREMIUM'}">Premium</option>
+                        <option value="BASIC" th:selected="${member.membershipType == 'BASIC'}">Basic</option>
+                    </select>
+                </td>
+                </td>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" placeholder="First Name" th:field="*{firstName}" /></td>
+                <td>Joining Date</td>
+                <td><input type="date" th:field="*{joiningDate}"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input type="text" placeholder="Last Name" th:field="*{lastName}" /></td>
+                <td>Expiry Date</td>
+                <td><input type="date"  th:field="*{expiryDate}" /></td>
+            </tr>
+            <tr>
+                <td>Contact Number</td>
+                <td><input type="text" placeholder="Contact Number" th:field="*{contactNumber}"></td>
+                <td>Membership Status</td>
+                <td>
+                    <select th:field="*{membershipStatus}" class="membership-status-select">
+                        <option value="ACTIVE" th:selected="${member.membershipStatus == 'ACTIVE'}">Active</option>
+                        <option value="INACTIVE" th:selected="${member.membershipStatus == 'INACTIVE'}">Inactive</option>
+                        <option value="EXPIRED" th:selected="${member.membershipStatus == 'EXPIRED'}">Expired</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Email Address</td>
+                <td><input type="text" placeholder="Email Address" th:field="*{emailAddress}"></td>
+            </tr>
+        </table>
+        <div class="btnSave">
+            <button type="submit">SAVE MEMBER</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
