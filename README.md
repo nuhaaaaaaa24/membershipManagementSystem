@@ -30,4 +30,22 @@ This system helps organizations manage members, track membership details, and pe
 ---
 
 ## 📂 Project Structure
+src/
+├─ main/
+│ ├─ java/com/example/membershipmanagement/
+│ │ ├─ controller/
+│ │ ├─ service/
+│ │ ├─ repository/
+│ │ └─ model/
+│ └─ resources/
+│ ├─ application.properties
+│ └─ templates/ (if using Thymeleaf)
+└─ test/
+
+🤝 Contributing
+Feel free to fork this repository and raise a pull request with improvements!
+
+📜 License
+This project is licensed under the MIT License.
+
 
