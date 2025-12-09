@@ -8,7 +8,6 @@ This project helps organizations efficiently handle their members, maintain reco
 ## ✨ Key Features
 
 - 👥 Manage member records (add, edit, delete)
-- 📄 View detailed membership information
 - 🧩 Layered architecture (Controller → Service → Repository)
 - 🚀 Fast development powered by Spring Boot
 - 📦 Modular, readable, and scalable project design
@@ -21,8 +20,7 @@ This project helps organizations efficiently handle their members, maintain reco
 - **Spring Boot**
 - **Maven**
 - **Spring MVC**
-- **MySQL** (optional depending on your version)
-- **Thymeleaf / API Endpoints** (based on your implementation)
+- **MySQL** 
 
 ---
 
@@ -33,12 +31,6 @@ This system is designed for learning and demonstrating:
 - Project structuring and clean code practices  
 - Handling CRUD operations in a real-world app  
 - Following MVC principles  
-
----
-
-## 🖥️ Screenshots (Optional)
-
-_Add screenshots here once your UI is completed._
 
 ---
 
